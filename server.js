@@ -1,13 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./src/routes');
+require('dotenv').config(); // Load dotenv
 
 // Set up the Express app
 const app = express();
 const port = 3000;
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://gemilang:tirto@tekweblanjut.hwlpdlr.mongodb.net/', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
