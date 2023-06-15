@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const dosenSchema = new mongoose.Schema({
   NIY: {
     type:Number,
-    required: true
+    required: true,
+    unique: true
   },
 
   nama: {

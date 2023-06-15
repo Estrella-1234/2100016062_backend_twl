@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const mahasiswaSchema = new mongoose.Schema({
   Nim: {
     type: Number,
-    required: true
+    required: true,
+    unique: true
   },
 
   imageName: {
