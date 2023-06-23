@@ -25,10 +25,10 @@ const {
 router.use(loggerMiddleware);
 
 // Dosen routes
-router.get('/dosen', authenticateToken, getAllDosen);
-router.post('/dosen', authenticateToken , createDosen);
-router.delete('/dosen/:id', authenticateToken, deleteDosen);
-router.put('/dosen/:id', authenticateToken, editDosen);
+router.get('/dosen',authenticateToken , getAllDosen);
+router.post('/dosen',authenticateToken , createDosen);
+router.delete('/dosen/:id',authenticateToken , deleteDosen);
+router.put('/dosen/:id',authenticateToken , editDosen);
 
 
 // Mahasiswa routes
@@ -45,7 +45,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 // Check token validity route
-router.get('/check-token', authenticateToken, checkTokenValidity);
+router.post('/check-token', authenticateToken, checkTokenValidity);
 
 
 module.exports = router;

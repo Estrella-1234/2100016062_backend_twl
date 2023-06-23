@@ -48,7 +48,7 @@ exports.loginUser = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign({ userId: user._id }, "Hakuna Matata", {
-            expiresIn: '3h', // Set token expiration time
+            expiresIn: '1h', // Set token expiration time
         });
 
         res.json({ token });

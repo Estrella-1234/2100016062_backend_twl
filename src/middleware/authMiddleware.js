@@ -2,23 +2,16 @@ const jwt = require('jsonwebtoken');
 
 // Authentication middleware
 exports.authenticateToken = (req, res, next) => {
-    // Get the token from the request headers or query parameters
-    const token = req.headers.authorization || req.query.token;
-
-    // Check if the token exists
-    if (!token) {
-        return res.status(401).json({ message: 'Access denied. Token is missing.' });
-    }
-
     try {
-        // Verify and decode the token
-        const decoded = jwt.verify(token, "Hakuna Matata");
+        const token = req.headers.authorization.split(' ')[1]; // Extract token from the Authorization header
+        const decoded = jwt.verify(token, 'Hakuna Matata'); // Verify the token using the secret key
 
-        // Pass the decoded payload to the next middleware or route handler
-        req.user = decoded;
+        // Attach the decoded token to the request object
+        req.user = decoded.user;
 
-        next();
+        next(); // Move to the next middleware
     } catch (error) {
-        return res.status(401).json({ message: 'Invalid token.' });
+        console.error(error);
+        return res.status(401).json({ error: 'Invalid token' });
     }
 };

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./src/routes');
+const cors = require('cors');
 require('dotenv').config(); // Load dotenv
 
 // Set up the Express app
@@ -18,6 +19,9 @@ mongoose.connect(process.env.MONGODB_URI, {
   .catch((error) => {
     console.error('Error connecting to MongoDB:', error);
   });
+
+// Enable CORS
+app.use(cors());
 
 // Middleware
 app.use(express.json());
