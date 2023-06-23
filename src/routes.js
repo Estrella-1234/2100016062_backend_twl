@@ -13,6 +13,11 @@ const {
   deleteMahasiswa,
   editMahasiswa,
 } = require('./controllers/mahasiswaController');
+const { 
+  registerUser, 
+  loginUser, 
+} = require('./controllers/authController');
+
 
 // Middleware
 router.use(loggerMiddleware);
@@ -30,5 +35,10 @@ router.post('/mahasiswa', createMahasiswa);
 router.delete('/mahasiswa/:id', deleteMahasiswa);
 router.put('/mahasiswa/:id', editMahasiswa);
 
+// User registration route
+router.post('/register', registerUser);
+
+// User login route
+router.post('/login', loginUser);
 
 module.exports = router;
