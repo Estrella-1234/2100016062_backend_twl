@@ -4,7 +4,7 @@ const UserModel = require('../models/userModel');
 
 // User registration
 exports.registerUser = async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, email, fullname } = req.body;
 
     try {
         // Check if the user already exists
@@ -18,6 +18,8 @@ exports.registerUser = async (req, res) => {
 
         // Create the user
         const newUser = new UserModel({
+            fullname,
+            email,
             username,
             password: hashedPassword,
         });
