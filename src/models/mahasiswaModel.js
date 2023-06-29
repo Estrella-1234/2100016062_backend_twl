@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
 
 const mahasiswaSchema = new mongoose.Schema({
-  Nim: {
+  NIM: {
     type: Number,
     required: true,
     unique: true
-  },
-
-  imageName: {
-    type: String,
-    required: true
   },
 
   Nama: {

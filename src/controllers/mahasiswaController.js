@@ -10,14 +10,14 @@ exports.getAllMahasiswa = async (req, res) => {
 };
 
 exports.createMahasiswa = async (req, res) => {
-  const { imageName, Nim, Nama, email, alamat } = req.body;
+  const { NIM, Nama, email, alamat } = req.body;
 
   try {
-    const newMahasiswa = new MahasiswaModel({ imageName, Nim, Nama, email, alamat });
+    const newMahasiswa = new MahasiswaModel({ NIM, Nama, email, alamat });
     const savedMahasiswa = await newMahasiswa.save();
     res.status(201).json(savedMahasiswa);
   } catch (error) {
-    res.status(500).json({ message: 'Error creating mahasiswa' });
+    res.status(500).json({ message: 'Error creating mahasiswa', error: error.message });
   }
 };
 
@@ -34,12 +34,12 @@ exports.deleteMahasiswa = async (req, res) => {
 
 exports.editMahasiswa = async (req, res) => {
   const { id } = req.params;
-  const { imageName, Nim, Nama, email, alamat } = req.body;
+  const { NIM, Nama, email, alamat } = req.body;
 
   try {
     const updatedMahasiswa = await MahasiswaModel.findByIdAndUpdate(
       id,
-      { imageName, Nim, Nama, email, alamat },
+      { NIM, Nama, email, alamat },
       { new: true }
     );
     res.json(updatedMahasiswa);

@@ -10,7 +10,7 @@ exports.registerUser = async (req, res) => {
         // Check if the user already exists
         const existingUser = await UserModel.findOne({ username });
         if (existingUser) {
-            return res.status(400).json({ message: 'Username already exists' });
+            return res.status(400).json({ message: 'Username Telah digunakan' });
         }
 
         // Hash the password
@@ -25,9 +25,9 @@ exports.registerUser = async (req, res) => {
         });
         await newUser.save();
 
-        res.status(201).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'Registrasi Berhasil' });
     } catch (error) {
-        res.status(500).json({ message: 'Error registering user' });
+        res.status(500).json({ message: 'Registrasi Berhasil' });
     }
 };
 
@@ -39,13 +39,13 @@ exports.loginUser = async (req, res) => {
         // Check if the user exists
         const user = await UserModel.findOne({ username });
         if (!user) {
-            return res.status(400).json({ message: 'Invalid username' });
+            return res.status(400).json({ message: 'User Tidak Ditemukan' });
         }
 
         // Compare the password
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return res.status(400).json({ message: 'Invalid password' });
+            return res.status(400).json({ message: 'Password Salah' });
         }
 
         // Generate JWT token
