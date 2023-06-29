@@ -13,11 +13,16 @@ exports.createDosen = async (req, res) => {
   const { NIY, nama, alamat, jabatan } = req.body;
 
   try {
+    const existingDosen = await DosenModel.findOne({ NIY });
+    if (existingDosen) {
+      return res.status(400).json({ message: 'NIY telah terdaftar' });
+    }
+    
     const newDosen = new DosenModel({ NIY, nama, alamat, jabatan });
     const savedDosen = await newDosen.save();
     res.status(201).json(savedDosen);
   } catch (error) {
-    res.status(500).json({ message: 'Error creating dosen' });
+    res.status(500).json({ message: 'Error creating dosen' , error: error.message });
   }
 };
 
@@ -37,6 +42,10 @@ exports.editDosen = async (req, res) => {
   const { NIY, nama, alamat, jabatan } = req.body;
 
   try {
+    const existingDosen = await DosenModel.findOne({ NIY });
+    if (existingDosen) {
+      return res.status(400).json({ message: 'NIY telah terdaftar' });
+    }
     const updatedDosen = await DosenModel.findByIdAndUpdate(
       id,
       { NIY, nama, alamat, jabatan },

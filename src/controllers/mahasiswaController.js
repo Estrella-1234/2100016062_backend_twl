@@ -13,6 +13,12 @@ exports.createMahasiswa = async (req, res) => {
   const { NIM, Nama, email, alamat } = req.body;
 
   try {
+    // Periksa apakah NIM sudah terdaftar sebelumnya
+    const existingMahasiswa = await MahasiswaModel.findOne({ NIM });
+    if (existingMahasiswa) {
+      return res.status(400).json({ message: 'NIM telah terdaftar'});
+    }
+
     const newMahasiswa = new MahasiswaModel({ NIM, Nama, email, alamat });
     const savedMahasiswa = await newMahasiswa.save();
     res.status(201).json(savedMahasiswa);
@@ -20,6 +26,7 @@ exports.createMahasiswa = async (req, res) => {
     res.status(500).json({ message: 'Error creating mahasiswa', error: error.message });
   }
 };
+
 
 exports.deleteMahasiswa = async (req, res) => {
   const { id } = req.params;
@@ -37,6 +44,10 @@ exports.editMahasiswa = async (req, res) => {
   const { NIM, Nama, email, alamat } = req.body;
 
   try {
+    const existingMahasiswa = await MahasiswaModel.findOne({ NIM });
+    if (existingMahasiswa) {
+      return res.status(400).json({ message: 'NIM telah terdaftar'});
+    }
     const updatedMahasiswa = await MahasiswaModel.findByIdAndUpdate(
       id,
       { NIM, Nama, email, alamat },

@@ -18,6 +18,8 @@ const {
   registerUser, 
   loginUser,
   checkTokenValidity,
+  getUserById,
+  editUser
 } = require('./controllers/authController');
 
 
@@ -47,5 +49,10 @@ router.post('/login', loginUser);
 // Check token validity route
 router.post('/check-token', authenticateToken, checkTokenValidity);
 
+// Get user manipulation
+router.get('/user/:id', authenticateToken, getUserById);
+router.put('/user/:id', authenticateToken, editUser)
 
+// Export the router
 module.exports = router;
+
