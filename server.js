@@ -6,7 +6,7 @@ require('dotenv').config(); // Load dotenv
 
 // Set up the Express app
 const app = express();
-// const port = process.env.PORT;
+const port = process.env.PORT;
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI1, {
@@ -30,6 +30,6 @@ app.use(express.json());
 app.use('/', routes);
 
 // Start the server
-// app.listen(port, () => {
-//   console.log(`Server running on port ${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
