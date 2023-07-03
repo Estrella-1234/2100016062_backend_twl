@@ -16,7 +16,7 @@ exports.createMahasiswa = async (req, res) => {
     // Periksa apakah NIM sudah terdaftar sebelumnya
     const existingMahasiswa = await MahasiswaModel.findOne({ NIM });
     if (existingMahasiswa) {
-      return res.status(400).json({ message: 'NIM telah terdaftar'});
+      return res.status(400).json({ message: 'NIM telah terdaftar' });
     }
 
     const newMahasiswa = new MahasiswaModel({ NIM, Nama, email, alamat });
@@ -46,7 +46,7 @@ exports.editMahasiswa = async (req, res) => {
   try {
     const existingMahasiswa = await MahasiswaModel.findOne({ NIM });
     if (existingMahasiswa) {
-      return res.status(400).json({ message: 'NIM telah terdaftar'});
+      return res.status(400).json({ message: 'NIM telah terdaftar' });
     }
     const updatedMahasiswa = await MahasiswaModel.findByIdAndUpdate(
       id,

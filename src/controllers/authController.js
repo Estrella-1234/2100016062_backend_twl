@@ -27,7 +27,7 @@ exports.registerUser = async (req, res) => {
 
         res.status(201).json({ message: 'Registrasi Berhasil' });
     } catch (error) {
-        res.status(500).json({ message: 'Registrasi Berhasil' });
+        res.status(500).json({ message: 'Registrasi Gagal' });
     }
 };
 
