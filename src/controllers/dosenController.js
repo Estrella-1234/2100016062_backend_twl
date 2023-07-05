@@ -42,10 +42,10 @@ exports.editDosen = async (req, res) => {
   const { NIY, nama, alamat, jabatan } = req.body;
 
   try {
-    const existingDosen = await DosenModel.findOne({ NIY });
-    if (existingDosen) {
-      return res.status(400).json({ message: 'NIY telah terdaftar' });
-    }
+    // const existingDosen = await DosenModel.findOne({ NIY });
+    // if (existingDosen) {
+    //   return res.status(400).json({ message: 'NIY telah terdaftar' });
+    // }
     const updatedDosen = await DosenModel.findByIdAndUpdate(
       id,
       { NIY, nama, alamat, jabatan },

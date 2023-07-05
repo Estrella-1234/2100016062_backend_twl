@@ -44,10 +44,7 @@ exports.editMahasiswa = async (req, res) => {
   const { NIM, Nama, email, alamat } = req.body;
 
   try {
-    const existingMahasiswa = await MahasiswaModel.findOne({ NIM });
-    if (existingMahasiswa) {
-      return res.status(400).json({ message: 'NIM telah terdaftar' });
-    }
+
     const updatedMahasiswa = await MahasiswaModel.findByIdAndUpdate(
       id,
       { NIM, Nama, email, alamat },
