@@ -47,7 +47,7 @@ exports.editMahasiswa = async (req, res) => {
 
     const updatedMahasiswa = await MahasiswaModel.findByIdAndUpdate(
       id,
-      { NIM, Nama, email, alamat },
+      { Nama, email, alamat },
       { new: true }
     );
     res.json(updatedMahasiswa);
