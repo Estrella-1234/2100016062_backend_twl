@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
+
 // const routes = require('./src/routes');
 const routes = require('./src/routes/routesAuth');
 const routesMhs = require('./src/routes/routesMhs');
-const routerDsn = require('./src/routes/routesDsn')
+const routerDsn = require('./src/routes/routesDsn');
+const routesUpload = require('./src/routes/routesUpload');
 const cors = require('cors');
 require('dotenv').config(); // Load dotenv
 
@@ -37,6 +40,11 @@ app.use('/', routesMhs)
 
 // Routes Dosen
 app.use('/', routerDsn)
+
+// Routes Upload
+app.use('/', routesUpload)
+
+app.use('/uploads', express.static(path.join(__dirname, 'src/uploads/img')));
 
 // Start the server
 app.listen(port, () => {

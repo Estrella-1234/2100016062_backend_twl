@@ -84,10 +84,6 @@ exports.editUser = async (req, res) => {
     const { username, email, fullname } = req.body;
 
     try {
-        const existingUser = await UserModel.findOne({ username });
-        if (existingUser) {
-            return res.status(400).json({ message: 'Username telah digunakan' });
-        }
         // Find the user by id
         const user = await UserModel.findById(id);
         if (!user) {

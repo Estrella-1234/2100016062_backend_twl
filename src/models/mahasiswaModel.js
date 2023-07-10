@@ -20,7 +20,12 @@ const mahasiswaSchema = new mongoose.Schema({
   alamat: {
     type: String,
     required: true
-  }
+  },
+  imageName: {
+    type: String,
+    required: true
+  },
+
 });
 
 const MahasiswaModel = mongoose.model('Mahasiswa', mahasiswaSchema);
