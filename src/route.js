@@ -53,6 +53,7 @@ router.post('/check-token', authenticateToken, checkTokenValidity);
 router.get('/user/:id', authenticateToken, getUserById);
 router.put('/user/:id', authenticateToken, editUser)
 
+
 // Export the router
 module.exports = router;
 

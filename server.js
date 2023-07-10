@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require('./src/routes');
+// const routes = require('./src/routes');
+const routes = require('./src/routes/routesAuth');
+const routesMhs = require('./src/routes/routesMhs');
+const routerDsn = require('./src/routes/routesDsn')
 const cors = require('cors');
 require('dotenv').config(); // Load dotenv
 
@@ -28,6 +31,12 @@ app.use(express.json());
 
 // Routes
 app.use('/', routes);
+
+// Routes Mahasiswa
+app.use('/', routesMhs)
+
+// Routes Dosen
+app.use('/', routerDsn)
 
 // Start the server
 app.listen(port, () => {
