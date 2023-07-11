@@ -1,1 +1,5 @@
+# ignore all .env files
 .env
+
+# ignore all files in images folder
+/src/upload/img/
