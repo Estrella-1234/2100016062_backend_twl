@@ -30,14 +30,18 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/', routes);
+app.use('/auth', routes);
 
 // Routes Mahasiswa
-app.use('/', routesMhs)
+app.use('/mhs', routesMhs)
 
 // Routes Dosen
-app.use('/', routerDsn)
+app.use('/dsn', routerDsn)
 
+// Default route
+app.get('/', (req, res) => {
+  res.send('API is Working')
+})
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
