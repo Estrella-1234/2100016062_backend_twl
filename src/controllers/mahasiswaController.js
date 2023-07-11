@@ -56,14 +56,12 @@ exports.deleteMahasiswa = async (req, res) => {
 exports.editMahasiswa = async (req, res) => {
   const { id } = req.params;
   const { Nama, email, alamat, imageName } = req.body;
-
   try {
     let updatedMahasiswa = { Nama, email, alamat };
 
     if (imageName) {
       // If the imageName is provided, update it as well
       updatedMahasiswa = { ...updatedMahasiswa, imageName };
-
       // Find the existing Mahasiswa to get the old image name
       const existingMahasiswa = await MahasiswaModel.findById(id);
 

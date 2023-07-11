@@ -11,7 +11,6 @@ exports.getAllDosen = async (req, res) => {
 
 exports.createDosen = async (req, res) => {
   const { NIY, nama, alamat, jabatan } = req.body;
-
   try {
     const existingDosen = await DosenModel.findOne({ NIY });
     if (existingDosen) {
