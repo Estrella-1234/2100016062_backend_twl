@@ -12,20 +12,21 @@ require('dotenv').config(); // Load dotenv
 
 // Set up the Express app
 const app = express();
-const port = process.env.PORT;
+const port = 3001;
+const uri = "mongodb+srv://gemilang:tirto@cluster0.gfs5dhs.mongodb.net/?retryWrites=true&w=majority/twl";
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI1, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log("Connected to MongoDB");
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
   })
   .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
+    console.error("Error connecting to MongoDB:", error);
   });
-
 // Enable CORS
 app.use(cors());
 
@@ -46,7 +47,6 @@ app.use('/', routesUpload)
 
 app.use('/uploads', express.static(path.join(__dirname, 'src/uploads/img')));
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.get('/', (req, res) => {
+  res.send('It works!');
 });
