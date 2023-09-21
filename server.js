@@ -12,8 +12,8 @@ require('dotenv').config(); // Load dotenv
 
 // Set up the Express app
 const app = express();
-const port = 3001;
-const uri = "mongodb+srv://gemilang:tirto@cluster0.gfs5dhs.mongodb.net/?retryWrites=true&w=majority/twl";
+const port = 3008;
+const uri = "mongodb://127.0.0.1:27017/";
 
 // Connect to MongoDB
 mongoose
